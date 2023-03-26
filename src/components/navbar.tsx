@@ -25,7 +25,7 @@ export function Navbar() {
           <li className="relative" onClick={() => setIsOpen((s) => !s)}>
             <span className="cursor-pointer">{session.user?.name}</span>
             {isOpen && (
-              <div className="absolute top-14 right-0 bg-zinc-800 min-w-[170px] rounded-md shadow-2xl py-3 px-6">
+              <div className="absolute top-8 right-0 bg-zinc-800 min-w-[170px] rounded-md shadow-xl py-3 px-6 border border-zinc-700">
                 <ul>
                   <li className="hover:text-indigo-400">
                     <Link href="/me">Profile</Link>
@@ -37,7 +37,7 @@ export function Navbar() {
                   )}
                   <li
                     className="hover:text-indigo-400 cursor-pointer"
-                    onClick={() => signOut()}
+                    onClick={() => signOut({ callbackUrl: "/login" })}
                   >
                     Log out
                   </li>
