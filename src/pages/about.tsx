@@ -4,13 +4,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home | Acme</title>
+        <title>About | Acme</title>
         <meta
           name="description"
-          content="Acme is an application for testing purposes."
+          content="This is the aboud page."
         />
       </Head>
-      Home page
+      About page
     </>
   );
 }
