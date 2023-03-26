@@ -16,7 +16,8 @@
     "incremental": true,
     "paths": {
       "styles/*": ["./src/styles/*"],
-      "components/*": ["./src/components/*"]
+      "components/*": ["./src/components/*"],
+      "mock/*": ["./src/mock/*"]
     }
   },
   "include": ["process.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],

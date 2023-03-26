@@ -1,47 +1,47 @@
-import { LayoutMain, roboto } from "components/layout";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getServerSession } from "next-auth";
-import { signIn } from "next-auth/react";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { FormEvent, ReactElement, useState } from "react";
-import { authOptions } from "./api/auth/[...nextauth]";
+import { LayoutMain, roboto } from 'components/layout'
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
+import { getServerSession } from 'next-auth'
+import { signIn } from 'next-auth/react'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { FormEvent, ReactElement, useState } from 'react'
+import { authOptions } from './api/auth/[...nextauth]'
 
 export default function Login() {
-  const router = useRouter();
+  const router = useRouter()
   const [loginErrorMessage, setLoginErrorMessage] = useState<
     string | undefined
-  >();
-  const [isLoading, setIsLoading] = useState<boolean>();
+  >()
+  const [isLoading, setIsLoading] = useState<boolean>()
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
+    e.preventDefault()
+    setIsLoading(true)
 
     const target = e.target as typeof e.target & {
-      username: { value: string };
-      password: { value: string };
-    };
+      username: { value: string }
+      password: { value: string }
+    }
 
-    const username = target.username.value;
-    const password = target.password.value;
+    const username = target.username.value
+    const password = target.password.value
 
-    const callbackUrl = (router.query.callbackUrl as string) ?? "/me";
+    const callbackUrl = (router.query.callbackUrl as string) ?? '/me'
 
-    const result = await signIn("credentials", {
+    const result = await signIn('credentials', {
       username,
       password,
       callbackUrl,
       redirect: false,
-    });
+    })
 
     if (result?.error) {
-      setLoginErrorMessage("Invalid email or password.");
+      setLoginErrorMessage('Invalid email or password.')
     } else {
-      router.push(result?.url!);
+      router.push(result?.url!)
     }
 
-    setIsLoading(false);
+    setIsLoading(false)
   }
 
   return (
@@ -76,13 +76,13 @@ export default function Login() {
               className="bg-indigo-500 p-2 rounded-md hover:bg-indigo-400 uppercase font-medium"
               disabled={isLoading}
             >
-              {isLoading ? "loading..." : "login"}
+              {isLoading ? 'loading...' : 'login'}
             </button>
           </form>
           <div className="mt-5">
             <button
               className="w-full bg-zinc-700 p-2 rounded-md hover:bg-indigo-500 uppercase font-medium"
-              onClick={() => signIn("github")}
+              onClick={() => signIn('github')}
             >
               github
             </button>
@@ -90,19 +90,19 @@ export default function Login() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getServerSession(context.req, context.res, authOptions);
+  const session = await getServerSession(context.req, context.res, authOptions)
 
   if (session) {
-    return { redirect: { destination: "/me" } };
+    return { redirect: { destination: '/me' } }
   }
 
   return {
     props: {},
-  };
+  }
 }
 
 Login.getLayout = function getLayout(page: ReactElement) {
@@ -110,5 +110,5 @@ Login.getLayout = function getLayout(page: ReactElement) {
     <div className={`${roboto.variable} font-sans`}>
       <LayoutMain>{page}</LayoutMain>
     </div>
-  );
-};
+  )
+}

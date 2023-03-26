@@ -1,10 +1,10 @@
-import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
-import { useState } from "react";
+import { signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { useState } from 'react'
 
 export function Navbar() {
-  const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession()
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <nav className="bg-zinc-800 py-5 px-8 font-medium">
@@ -30,14 +30,14 @@ export function Navbar() {
                   <li className="hover:text-indigo-400">
                     <Link href="/me">Profile</Link>
                   </li>
-                  {session.user.role === "admin" && (
+                  {session.user.role === 'admin' && (
                     <li className="hover:text-indigo-400">
                       <Link href="/admin">Admin</Link>
                     </li>
                   )}
                   <li
                     className="hover:text-indigo-400 cursor-pointer"
-                    onClick={() => signOut({ callbackUrl: "/login" })}
+                    onClick={() => signOut({ callbackUrl: '/login' })}
                   >
                     Log out
                   </li>
@@ -52,5 +52,5 @@ export function Navbar() {
         )}
       </ul>
     </nav>
-  );
+  )
 }
