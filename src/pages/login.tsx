@@ -93,18 +93,6 @@ export default function Login() {
   )
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getServerSession(context.req, context.res, authOptions)
-
-  if (session) {
-    return { redirect: { destination: '/me' } }
-  }
-
-  return {
-    props: {},
-  }
-}
-
 Login.getLayout = function getLayout(page: ReactElement) {
   return (
     <div className={`${roboto.variable} font-sans`}>
