@@ -12,6 +12,7 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       // @ts-ignore
       async authorize(credentials): Promise<unknown> {
+        // simulating call to an external service
         const user = await getSignInUserService(credentials)
 
         if (!user) {
