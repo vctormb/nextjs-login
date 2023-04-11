@@ -1,11 +1,9 @@
 import { LayoutMain, roboto } from 'components/layout'
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { getServerSession } from 'next-auth'
 import { signIn } from 'next-auth/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, ReactElement, useState } from 'react'
-import { authOptions } from './api/auth/[...nextauth]'
 
 export default function Login() {
   const router = useRouter()
